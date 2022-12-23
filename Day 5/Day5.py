@@ -41,11 +41,15 @@ for move in moves:
     del move[1]
     del move[2]
 
-    for i in range(int(move[0])):
-        src = int(move[1])
-        trg = int(move[2])
-        crate = stack_f[src-1].pop(-1)
-        stack_f[trg-1].append(crate)
+    # for i in range(int(move[0])):
+    num = int(move[0])
+    src = int(move[1])
+    trg = int(move[2])
+
+    ### Figure out from here
+    crate = stack_f[src-1][-1:-num]
+    del stack_f[src-1][-1:-num]
+    stack_f[trg-1].extend(crate)
         
 for row in stack_f:
     print(row[-1], end = '')
