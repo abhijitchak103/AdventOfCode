@@ -17,13 +17,6 @@ for i in range(1, len(lines[0]), 4):
 
     stack.append(new)
 
-stack_f = list()
-for row in stack:
-    row = row[::-1]
-    stack_f.append(row)
-
-# print(stack)
-
 # Gathering the moves and storing in a list
 
 with open("Day 5_moves.txt") as f:
@@ -46,18 +39,13 @@ for move in moves:
     src = int(move[1])
     trg = int(move[2])
 
-    ### Figure out from here
-    crate = stack_f[src-1][-1:-num]
-    del stack_f[src-1][-1:-num]
-    stack_f[trg-1].extend(crate)
-        
-for row in stack_f:
-    print(row[-1], end = '')
+    
+    crate = stack[src-1][:num][::-1]
+    del stack[src-1][:num]
+    
+    # Moving the crates in the same order as they were
+    for ele in crate:
+        stack[trg-1].insert(0, ele)
 
-
-
-
-
-
-
-
+for row in stack:
+    print(row[0], end = '')
