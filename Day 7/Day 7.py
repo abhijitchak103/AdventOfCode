@@ -36,7 +36,15 @@ for key, value in dirs.items():
 
 print(total)
 
+empty = 70_000_000 - dirs['/home']
+space = 30_000_000
 
+dirs_sorted = sorted(dirs.items(), key = lambda x: x[1])
+
+for item in dirs_sorted:
+    if item[1] + empty >= space:
+        print(item[1])
+        break
 
 
         
